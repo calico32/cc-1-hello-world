@@ -1,5 +1,26 @@
 # hello coding club people
 
-This is a fairly standard server-side typescript project.
+Discord bot version of the webserver
 
-All it does is send hello world and a random image of a cat back any GET request it receives.
+Mention the bot to receive an image of a cat
+
+![cat](example.png)
+
+## how to install
+
+1. clone this repo (green button at the top) and checkout this branch (`discord`)
+2. install dependencies: `yarn`
+3. copy `.env.example` to `.env` and fill in the fields
+   1. get a Discord bot token at <https://discord.com/developers>
+   2. get a cat API key at <https://thecatapi.com>
+
+your `.env` should look like this:
+
+```sh
+CAT_API_KEY='XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX'
+DISCORD_TOKEN='XXXXXXXXXXXXXXXXXXXXXXXXXX.XXXXX.XXXXXXXXXXXXXXXXXXXXXXXXXXX'
+```
+
+4. start the bot by either running `yarn dev` or `yarn build && yarn start`
+   1. docker files availble: you can run `docker build .` to build an image and
+      `docker run <image id>` to start it
