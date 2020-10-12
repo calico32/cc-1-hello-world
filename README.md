@@ -6,6 +6,13 @@ Mention the bot to receive an image of a cat
 
 ![cat](example.png)
 
+## but how does it work?
+
+The cat image fetching is functionally the same as the webserver, but instead of opening one, we
+connect to the discord API using `discord.js` and login as a bot.
+
+If the bot is mentioned by a user, it will send back an embed of a cat.
+
 ## how to install
 
 1. clone this repo (green button at the top) and checkout this branch (`discord`)
