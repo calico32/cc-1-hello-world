@@ -1,19 +1,16 @@
 {
   "include": [
-    "src",
     "*.ts",
   ],
   "exclude": [
-    "server",
+    "../*.*"
   ],
   "compilerOptions": {
     "target": "es6",
     "module": "commonjs",
     "lib": [
-      "ESNext",
-      "DOM"
+      "ESNext"
     ],
-    "jsx": "react",
     "incremental": true,
     "sourceMap": true,
     "outDir": "dist",

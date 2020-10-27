@@ -1,22 +1,36 @@
 # hello coding club people
 
-This is a fairly standard server-side typescript project.
-
-All it does is send "hello world" and a random image of a cat to any GET request it receives.
+This is a simple webpack-bundled web app that renders a canvas using WebGL.
 
 ![example](example.png)
 
 ## but how does it work?
 
-This project uses `express`, an package to easily create webservers in Node.js.
+The PixiJS (`pixi.js`) library is used for creating the stage and managing the sprites, etc. While
+not really necessary for this simple project, support for SCSS and React (aliased to `preact/compat`
+because bundle size) are also thrown in.
 
-Every time a GET request is made to any path, the EJS template at `views/index.ejs` is filled with
-the current date and the URL to a cat image, provided by <https://thecatapi.com>. Images are
-preloaded to reduce loading time.
+This project utilizes [webpack](https://npmjs.org/package/webpack), a bundler that can package
+almost any kinds of asset. I'm using `ts-loader` and `scss-loader` for TS and SCSS (mostly), and a
+whole host of plugins. For a complete list, see `server/src/webpack.config.ts`.
 
-API keys and other secrets can be read from `.env` using the `dotenv` package.
+webpack bundles all the code from `src` and everything it imports (from `node_modules`, etc) into a
+few files, as well as generates an HTML file with the necessary `script` and `link` tags that can be
+served to the client.
 
-See `src/server.ts` and `src/cat.ts` for more info.
+Again, API keys are read from `.env` using the `dotenv` package, but are not given to the client.
+Instead, the client makes a GET request to the server, which makes the request for the cat image and
+sends the data back.
+
+### project structure
+
+TS and SCSS source files for the frontend live in `src`. The EJS template for HTML Webpack Plugin is
+also there. The script entrypoint is `src/index.tsx`.
+
+Backend source files, including the webpack config, are inside `server`. The server entrypoint
+is `server/server.ts`.
+
+Generated files for the frontend and backend are at `dist` and `server/dist` respectively.
 
 ## how to install
 
@@ -33,6 +47,8 @@ CAT_API_KEY='XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX'
 PORT=1234
 ```
 
-4. start the bot by either running `yarn dev` or `yarn build && yarn start`
+4. build the project with `yarn build`
+5. start the webserver with `yarn start`
    1. docker files availble: you can run `docker build .` to build an image and
       `docker run -p <port>:<port> <image id>` to start it
+6. navigate to http://localhost:PORT for cats
